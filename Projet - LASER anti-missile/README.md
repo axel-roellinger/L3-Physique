@@ -38,7 +38,15 @@ Nous avons alors : tan(angle de tir) = y/delta_X.
 
 Une fois ces informations recueillies, le tir peut être effectué. Il faut maintenant vérifier que l'impact a eu lieu.
 
-J'utilise un tableau pour stocker les points constituant la trajectoire du LASER, et j'étudie le point le plus proche de la trajectoire initiale du missile, qui n'est pas faussée. En utilisant les dimensions du missile, j'étudie alors où le LASER est passé relativement au missile, et je calcule l'écart au centre du missile. Si ce dernier est inférieur à la moitié de la hauteur du missile, on considère que l'impact est réalisé, et que le missile est détruit.
+J'utilise un tableau pour stocker les points constituant la trajectoire du LASER, et j'étudie le point le plus proche de la trajectoire initiale du missile, qui n'est pas faussée.
+En utilisant les dimensions du missile, j'étudie alors où le LASER est passé relativement au missile, et je calcule l'écart au centre du missile. J'utilise la coordonnée où se trouvait le missile à t = temps_de_tir, ce qui me permet de situer le missile dans l'espace. Pour confirmer ou non l'impact, je procède à ces deux calculs :
+
+<p align="center">
+    double deltaX = abs((missile.getLargeur()/2)*cos(ang_missile) + (missile.getHauteur()/2)*sin(ang_missile)); 
+    double deltaY = abs((missile.getHauteur()/2)*cos(ang_missile) + (missile.getLargeur()/2)*sin(ang_missile));
+</p>
+
+Ces deux valeurs représentent les différences maximales entre la position du LASER et celle du missile à l'instant du tir pour que le tir soit réalisé.
 
 Pour le lancer, il suffira de taper "./projet.exe" depuis le Terminal.
  
